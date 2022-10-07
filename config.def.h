@@ -66,9 +66,19 @@ static const char unknown_str[] = "n/a";
 static const struct arg args[] = {
 	/* function 		format          argument */
 	// { run_command, 		" %s ",  		"if [[ '$(bluetoothctl info)' != 'Missing device address argument' ]]; then echo '' else echo '' fi"},
-	{ datetime, 		" %s |",        " %F |  %T" },
-	{ run_command, 		"  %s |",  	"amixer sget Master | grep 'Left:' | awk -F '[][]' '{print $2}'" },
-	{ battery_state, 	" %s",  		"BAT0" },
-	{ battery_perc, 	" %s% |",  		"BAT0" }
 	
+	{ run_command, 		"^b#c79bff^^c#19002e^ 墳 ^b#240041^^c#c79bff^ %s ",	"amixer sget Master | grep 'Left:' | awk -F '[][]' '{print $2}'" },
+
+	{ separator, 		"^b#19002e^ ",           							NULL },
+	{ battery_state, 	"^b#c79bff^^c#19002e^ %s ^b#240041^^c#c79bff^",  	"BAT0" },
+	{ battery_perc, 	" %s",  											"BAT0" },
+	// haven't investigated why percent sign cant be printed along with battery_perc, had to add on separator
+	{ separator, 		"% ^b#19002e^ ",           							NULL },
+	{ ram_used, 		"^b#c79bff^^c#19002e^ ﬙ ^b#240041^^c#c79bff^ %s ", 	"NULL" },
+
+	{ separator, 		"^b#19002e^ ",           							NULL }, 
+	{ datetime, 		"^b#900048^^c#00ffb7^  ^b#240041^^c#ff0e82^ %s ",	"%F" },
+
+	{ separator, 		"^b#19002e^ ",           							NULL }, 
+	{ datetime, 		"^b#900048^^c#00ffb7^  ^b#240041^^c#ff0e82^ %s ", 	"%T" },
 };
