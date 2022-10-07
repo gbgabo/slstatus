@@ -74,7 +74,7 @@
 		}
 
 		return fmt_human((total - free - buffers - cached) * 1024,
-		                 1024);
+		                 1000);
 	}
 #elif defined(__OpenBSD__)
 	#include <stdlib.h>
